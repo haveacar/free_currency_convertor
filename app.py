@@ -94,6 +94,9 @@ def index():
     else:
         return render_template('index.html', data=data, currencies=currencies)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5002)

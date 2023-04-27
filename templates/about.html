@@ -14,6 +14,7 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
+body>
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <img src="{{ url_for('static', filename='img/gold-euro-coin-18551.svg') }}" class="bi me-2" width="40"
@@ -26,38 +27,24 @@
         <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
     </ul>
 </header>
-<div style="text-align:center;">
-    <p style="margin-top: 5px;">Rates from date: {{ data }}</p>
+<div class="center">
+    <h1>Hi I'm Daniel </h1>
+    <h2>You can use Currency Convertor for free</h2>
+    <h4>Pay attention! Updated every day these are real currency rates!</h4>
+    <hr>
+    <p>For collaboration please contact me in any way at the bottom of the link</p>
 </div>
-<div style="max-width:20%; display:block; margin: auto;">
-    <img class="img-fluid" src="{{ url_for('static', filename='img/money-exchange.png') }}" alt="..."/>
-</div>
-<form method="post">
-    <input type="number" name="amount" placeholder="Enter amount" required min="1">
-    <br><br>
-    <label for="from_currency">From Currency:</label>
-    <select name="from_currency" id="from_currency">
-        {% for currency in currencies %}
-            <option value="{{ currency }}">{{ currency }}</option>
-        {% endfor %}
-    </select>
-    <label for="to_currency">To Currency:</label>
-    <select name="to_currency" id="to_currency">
-        {% for currency in currencies %}
-            <option value="{{ currency }}">{{ currency }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <button type="submit">Convert</button>
-</form>
-{% if converted_amount is not none %}
-    <div style="text-align:center;">
-        <H2 style="margin-top: 5px;">
-            Result: {{ amount }} {{ from_currency }} {{ converted_amount }} {{ to_currency }}</H2>
-    </div>
-{% endif %}
 
-<
+
+<style>
+    .center {
+        text-align: center;
+        margin: auto;
+        width: 50%;
+    }
+</style>
+
+
 <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="https://www.linkedin.com/in/daniel-govnir-2bb234214/"
