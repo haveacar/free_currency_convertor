@@ -76,7 +76,7 @@ class Currency:
 app = Flask(__name__)
 conversion_rates= Currency()
 
-
+#list favorite rates
 favorite_rates= ('USD', 'EUR', 'GBP', 'JPY')
 
 
