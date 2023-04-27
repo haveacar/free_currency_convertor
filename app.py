@@ -11,12 +11,14 @@ REQUEST_URL = "https://api.apilayer.com/fixer/latest?base=USD"
 CURRENT_PATH = os.path.dirname(__file__)
 CURRENT_PATCH_JASON = os.path.join(CURRENT_PATH, "static")
 
+
 class Currency:
     '''Currency convertor'''
+
     def __init__(self):
         pass
 
-    def currency_convector(self,f_rates):
+    def currency_convector(self):
 
         def receive_data():
             """
@@ -63,38 +65,34 @@ class Currency:
 
         all_rates = reload_rates()
 
-        # get data rates
-        date=all_rates.get("date")
-
-        # get all rates
-        full_rates = all_rates.get("rates")
-
-
-        return full_rates,date
+        return all_rates
 
 
 app = Flask(__name__)
-conversion_rates= Currency()
+conversion_rates = Currency()
 
-#list favorite rates
-favorite_rates= ('USD', 'EUR', 'GBP', 'JPY')
-
+# get current data rates
+data = conversion_rates.currency_convector().get("date")
+# list comprehension of keys rates
+currencies = [key for key in conversion_rates.currency_convector().get("rates")]
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
     if request.method == 'POST':
 
         amount = float(request.form['amount'])
         from_currency = request.form['from_currency']
         to_currency = request.form['to_currency']
         # get conversion rate
-        conversion_rate = conversion_rates.currency_convector(favorite_rates)[0][to_currency] / conversion_rates.currency_convector(favorite_rates)[0][from_currency]
+        conversion_rate = conversion_rates.currency_convector().get("rates")[to_currency] / \
+                          conversion_rates.currency_convector().get("rates")[from_currency]
         converted_amount = round(amount * conversion_rate, 2)
-        return render_template('index.html', converted_amount=converted_amount)
+        # return template rates
+        return render_template('index.html', data=data, amount=amount, from_currency=from_currency + " =",
+                               converted_amount=converted_amount, to_currency=to_currency, currencies=currencies)
     else:
-        return render_template('index.html')
+        return render_template('index.html', data=data, currencies=currencies)
 
 
 if __name__ == '__main__':

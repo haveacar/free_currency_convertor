@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Free Currency Convertor</title>
@@ -10,30 +10,65 @@
             margin: 0 auto;
         }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  </head>
-  <body>
-     <h1>Currency Converter</h1>
-    <form method="post">
-      <input type="number" name="amount" placeholder="Enter amount" required>
-      <select name="from_currency">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-        <option value="JPY">JPY</option>
-      </select>
-      <select name="to_currency">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-        <option value="JPY">JPY</option>
-      </select>
-      <button type="submit">Convert</button>
-    </form>
-    {% if converted_amount is not none %}
-      <p >{{ amount }} {{ from_currency }} is equal to {{ converted_amount }} {{ to_currency }}</p>
-    {% endif %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <img src="{{ url_for('static', filename='img/gold-euro-coin-18551.svg') }}" class="bi me-2" width="40"
+             height="32">
+        <span class="fs-4">Free Currency converter</span>
+    </a>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-  </body>
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Convert</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+    </ul>
+</header>
+<div style="text-align:center;">
+    <p style="margin-top: 5px;">Rates from date: {{ data }}</p>
+</div>
+<div style="max-width:20%; display:block; margin: auto;">
+    <img class="img-fluid" src="{{ url_for('static', filename='img/money-exchange.png') }}" alt="..."/>
+</div>
+<form method="post">
+    <input type="number" name="amount" placeholder="Enter amount" required min="1">
+    <br><br>
+    <label for="from_currency">From Currency:</label>
+    <select name="from_currency" id="from_currency">
+        {% for currency in currencies %}
+            <option value="{{ currency }}">{{ currency }}</option>
+        {% endfor %}
+    </select>
+    <label for="to_currency">To Currency:</label>
+    <select name="to_currency" id="to_currency">
+        {% for currency in currencies %}
+            <option value="{{ currency }}">{{ currency }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <button type="submit">Convert</button>
+</form>
+{% if converted_amount is not none %}
+    <div style="text-align:center;">
+        <H2 style="margin-top: 5px;">
+            Result: {{ amount }} {{ from_currency }} {{ converted_amount }} {{ to_currency }}</H2>
+    </div>
+{% endif %}
+
+<<footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="https://www.linkedin.com/in/daniel-govnir-2bb234214/" class="nav-link px-2 text-body-secondary">Linkedin</a></li>
+      <li class="nav-item"><a href="https://github.com/haveacar" class="nav-link px-2 text-body-secondary">GitHub</a></li>
+      <li class="nav-item"><a href="https://danielgovnir.herokuapp.com/" class="nav-link px-2 text-body-secondary">Personal Web</a></li>
+
+    </ul>
+    <p class="text-center text-body-secondary">© 2023 Daniel Govnir</p>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
 </html>
