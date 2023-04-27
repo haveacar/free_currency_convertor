@@ -33,7 +33,7 @@
     <img class="img-fluid" src="{{ url_for('static', filename='img/money-exchange.png') }}" alt="..."/>
 </div>
 <form method="post">
-    <input type="number" name="amount" placeholder="Enter amount" required>
+    <input type="number" name="amount" placeholder="Enter amount" required min="1">
     <br><br>
     <label for="from_currency">From Currency:</label>
     <select name="from_currency" id="from_currency">
