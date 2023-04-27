@@ -20,11 +20,13 @@
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Convert</a></li>
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
       </ul>
     </header>
-
+    <div style="max-width:30%; display:block; margin: auto;">
+        <img class="img-fluid" src="{{ url_for('static', filename='img/money-exchange.png') }}" alt="..."/>
+    </div>
     <form method="post">
       <input type="number" name="amount" placeholder="Enter amount" required>
       <select name="from_currency">
