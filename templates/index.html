@@ -24,7 +24,10 @@
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
       </ul>
     </header>
-    <div style="max-width:30%; display:block; margin: auto;">
+    <div style="text-align:center;" >
+            <p style="margin-top: 5px;">Rates from date: {{ data }}</p>
+        </div>
+    <div style="max-width:20%; display:block; margin: auto;">
         <img class="img-fluid" src="{{ url_for('static', filename='img/money-exchange.png') }}" alt="..."/>
     </div>
     <form method="post">

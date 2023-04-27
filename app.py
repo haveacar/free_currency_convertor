@@ -16,7 +16,7 @@ class Currency:
     def __init__(self):
         pass
 
-    def currency_convector(self,f_rates):
+    def currency_convector(self):
 
         def receive_data():
             """
@@ -64,13 +64,13 @@ class Currency:
         all_rates = reload_rates()
 
         # get data rates
-        date=all_rates.get("date")
+        #date=all_rates.get("date")
 
         # get all rates
-        full_rates = all_rates.get("rates")
+        #full_rates = all_rates.get("rates")
 
 
-        return full_rates,date
+        return all_rates
 
 
 app = Flask(__name__)
@@ -83,18 +83,19 @@ favorite_rates= ('USD', 'EUR', 'GBP', 'JPY')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-
+    data = conversion_rates.currency_convector().get("date")
     if request.method == 'POST':
 
         amount = float(request.form['amount'])
         from_currency = request.form['from_currency']
         to_currency = request.form['to_currency']
         # get conversion rate
-        conversion_rate = conversion_rates.currency_convector(favorite_rates)[0][to_currency] / conversion_rates.currency_convector(favorite_rates)[0][from_currency]
+        conversion_rate = conversion_rates.currency_convector().get("rates")[to_currency] / conversion_rates.currency_convector().get("rates")[from_currency]
         converted_amount = round(amount * conversion_rate, 2)
-        return render_template('index.html', amount= amount, from_currency= from_currency + " =", converted_amount=converted_amount, to_currency=to_currency)
+        # return template rates
+        return render_template('index.html', data=data, amount= amount, from_currency= from_currency + " =", converted_amount=converted_amount, to_currency=to_currency)
     else:
-        return render_template('index.html')
+        return render_template('index.html', data=data)
 
 
 if __name__ == '__main__':
