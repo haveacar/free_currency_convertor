@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-
 import requests as requests
 from flask import Flask, render_template, request, json
 
@@ -67,16 +66,11 @@ class Currency:
         # get data rates
         date=all_rates.get("date")
 
-        # create dict favorite rates
-        dict_favorite_rates = dict.fromkeys(f_rates, 0)
-        for next_key in f_rates:
-            dict_favorite_rates[next_key] = all_rates.get("rates").get(next_key)
-
         # get all rates
         full_rates = all_rates.get("rates")
 
 
-        return dict_favorite_rates, date, full_rates
+        return full_rates,date
 
 
 app = Flask(__name__)
