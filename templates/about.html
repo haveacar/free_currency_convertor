@@ -14,6 +14,7 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
+body>
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <img src="{{ url_for('static', filename='img/gold-euro-coin-18551.svg') }}" class="bi me-2" width="40"
@@ -26,36 +27,11 @@
         <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
     </ul>
 </header>
-<div style="text-align:center;">
-    <p style="margin-top: 5px;">Rates from date: {{ data }}</p>
-</div>
-<div style="max-width:20%; display:block; margin: auto;">
-    <img class="img-fluid" src="{{ url_for('static', filename='img/money-exchange.png') }}" alt="..."/>
-</div>
-<form method="post">
-    <input type="number" name="amount" placeholder="Enter amount" required min="1">
-    <br><br>
-    <label for="from_currency">From Currency:</label>
-    <select name="from_currency" id="from_currency">
-        {% for currency in currencies %}
-            <option value="{{ currency }}">{{ currency }}</option>
-        {% endfor %}
-    </select>
-    <label for="to_currency">To Currency:</label>
-    <select name="to_currency" id="to_currency">
-        {% for currency in currencies %}
-            <option value="{{ currency }}">{{ currency }}</option>
-        {% endfor %}
-    </select>
-    <br><br>
-    <button type="submit">Convert</button>
-</form>
-{% if converted_amount is not none %}
-    <div style="text-align:center;">
-        <H2 style="margin-top: 5px;">
-            Result: {{ amount }} {{ from_currency }} {{ converted_amount }} {{ to_currency }}</H2>
-    </div>
-{% endif %}
+    <h4>Hi I'm Daniel and this is my a Currency converter</h4>
+    <h4>You can use it for free</h4>
+    <h2>Pay attention! updated every day these are real currency quotes</h2>
+
+
 
 <<footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
