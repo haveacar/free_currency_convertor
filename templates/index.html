@@ -32,18 +32,20 @@
     </div>
     <form method="post">
       <input type="number" name="amount" placeholder="Enter amount" required>
-      <select name="from_currency">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-        <option value="JPY">JPY</option>
-      </select>
-      <select name="to_currency">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-        <option value="JPY">JPY</option>
-      </select>
+      <br><br>
+      <label for="from_currency">From Currency:</label>
+        <select name="from_currency" id="from_currency">
+            {% for currency in currencies %}
+            <option value="{{ currency }}">{{ currency }}</option>
+            {% endfor %}
+        </select>
+        <label for="to_currency">To Currency:</label>
+        <select name="to_currency" id="to_currency">
+            {% for currency in currencies %}
+            <option value="{{ currency }}">{{ currency }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
       <button type="submit">Convert</button>
     </form>
     {% if converted_amount is not none %}
@@ -51,6 +53,21 @@
             <H2 style="margin-top: 5px;">Result: {{ amount }} {{ from_currency }} {{ converted_amount }} {{ to_currency }}</H2>
         </div>
     {% endif %}
+
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+      <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    </ul>
+  </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   </body>

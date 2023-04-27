@@ -63,12 +63,6 @@ class Currency:
 
         all_rates = reload_rates()
 
-        # get data rates
-        #date=all_rates.get("date")
-
-        # get all rates
-        #full_rates = all_rates.get("rates")
-
 
         return all_rates
 
@@ -76,14 +70,17 @@ class Currency:
 app = Flask(__name__)
 conversion_rates= Currency()
 
-#list favorite rates
-favorite_rates= ('USD', 'EUR', 'GBP', 'JPY')
+# get current data rates
+data = conversion_rates.currency_convector().get("date")
+# list comprehension of keys rates
+currencies =  [key for key in conversion_rates.currency_convector().get("rates")]
 
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    data = conversion_rates.currency_convector().get("date")
+
+
     if request.method == 'POST':
 
         amount = float(request.form['amount'])
@@ -93,9 +90,9 @@ def index():
         conversion_rate = conversion_rates.currency_convector().get("rates")[to_currency] / conversion_rates.currency_convector().get("rates")[from_currency]
         converted_amount = round(amount * conversion_rate, 2)
         # return template rates
-        return render_template('index.html', data=data, amount= amount, from_currency= from_currency + " =", converted_amount=converted_amount, to_currency=to_currency)
+        return render_template('index.html', data=data, amount= amount, from_currency= from_currency + " =", converted_amount=converted_amount, to_currency=to_currency, currencies=currencies)
     else:
-        return render_template('index.html', data=data)
+        return render_template('index.html', data=data, currencies=currencies)
 
 
 if __name__ == '__main__':
