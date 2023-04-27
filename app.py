@@ -92,7 +92,7 @@ def index():
         # get conversion rate
         conversion_rate = conversion_rates.currency_convector(favorite_rates)[0][to_currency] / conversion_rates.currency_convector(favorite_rates)[0][from_currency]
         converted_amount = round(amount * conversion_rate, 2)
-        return render_template('index.html', converted_amount=converted_amount)
+        return render_template('index.html', amount= amount, from_currency= from_currency + " =", converted_amount=converted_amount, to_currency=to_currency)
     else:
         return render_template('index.html')
 
